@@ -26,7 +26,7 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public Object postMemberLogin(@RequestBody Login login, HttpSession session) {
-		 System.out.println("1 : "+login);
+		 System.out.println("1 Login : "+login);
 		 loginService.authenticate(login);
 		
 		 Member member = new Member();
