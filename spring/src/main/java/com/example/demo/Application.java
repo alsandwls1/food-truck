@@ -12,10 +12,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SpringBootApplication
 public class Application extends WebMvcConfigurerAdapter {
-	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
-            "classpath:/META-INF/resources/", "classpath:/images/",
-            "classpath:/static/", "classpath:/public/" };
-	
+//	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+//            "classpath:/META-INF/resources/", "classpath:/images/",
+//            "classpath:/static/", "classpath:/public/" };
+//	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
