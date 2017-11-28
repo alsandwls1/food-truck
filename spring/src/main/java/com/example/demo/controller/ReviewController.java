@@ -103,7 +103,17 @@ public class ReviewController {
 	//나의 리뷰
 	@GetMapping("/member/{r_member:.+}")
 	public List<Review> getMyReview(@PathVariable String r_member) {
-		return reviewRepository.findMemberReview(r_member);
+		List<Review> review = reviewRepository.findMemberReview(r_member);
+		System.out.println(review.isEmpty());
+		if(review.isEmpty()) {
+			//error 메세지 추가해서 넘김
+			Review r = new Review("등록된 나의 리뷰가 없습니다.");
+			review.add(r);
+			return review;
+		} else {
+			return review;
+		}
+		
 	}
 	
 	//트럭 리뷰
@@ -112,7 +122,8 @@ public class ReviewController {
 		List<Review> review = reviewRepository.findTruckReview(r_truck);
 		System.out.println(review.isEmpty());
 		if(review.isEmpty()) {
-			Review r = new Review("등록된 리뷰가 없습니다.");
+			//error 메세지 추가해서 넘김
+			Review r = new Review("등록된 트럭 리뷰가 없습니다.");
 			review.add(r);
 			return review;
 		} else {

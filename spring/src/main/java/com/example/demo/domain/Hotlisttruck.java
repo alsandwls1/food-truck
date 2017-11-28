@@ -27,5 +27,11 @@ public class Hotlisttruck {
 	private String tAddress;
 	private String tFoodmaterial;
 	private String tMember;
+	
+	private String hError;
+	
+	public Hotlisttruck(String hError) {
+		this.hError = hError;
+	}
 
 }

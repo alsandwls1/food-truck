@@ -20,4 +20,10 @@ public class Food {
 	private String fImage;
 	private int fTruck;
 
+	private String fError;
+	
+	public Food(String fError) {
+		this.fError = fError;
+	}
+
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Hotlist;
 import com.example.demo.domain.Hotlisttruck;
+import com.example.demo.domain.Review;
 import com.example.demo.repository.HotlistRepository;
 import com.example.demo.service.HotlistService;
 
@@ -52,7 +53,16 @@ public class HotlistController {
 	// 나의 즐겨찾기 조회
 	@GetMapping("/{hMember:.+}")
 	public List<Hotlisttruck> getAllByMember(@PathVariable String hMember) {
-		return hotlistRepository.findAllByMember(hMember);
+		List<Hotlisttruck> hotlist = hotlistRepository.findAllByMember(hMember);
+		System.out.println(hotlist.isEmpty());
+		if(hotlist.isEmpty()) {
+			//error 메세지 추가해서 넘김
+			Hotlisttruck h = new Hotlisttruck("등록된 즐겨찾기가 없습니다.");
+			hotlist.add(h);
+			return hotlist;
+		} else {
+			return hotlist;
+		}
 	}
 
 	@GetMapping("/check/{tId}/{hMember:.+}")

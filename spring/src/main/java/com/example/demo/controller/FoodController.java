@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.domain.Food;
+import com.example.demo.domain.Review;
 import com.example.demo.repository.FoodRepository;
 import com.example.demo.service.StorageService;
 
@@ -75,7 +76,16 @@ public class FoodController {
 	
 	@GetMapping("/{fTruck}")
 	public List<Food> getAllByTruck(@PathVariable int fTruck) {
-		return foodRepository.findAllByTruck(fTruck);
+		List<Food> food = foodRepository.findAllByTruck(fTruck);
+		System.out.println(food.isEmpty());
+		if(food.isEmpty()) {
+			//error 메세지 추가해서 넘김
+			Food f = new Food("등록된 메뉴가 없습니다.");
+			food.add(f);
+			return food;
+		} else {
+			return food;
+		}
 	}
 	
 	//트럭에 있는 푸드하나만 가져옴 :  추후 추가
