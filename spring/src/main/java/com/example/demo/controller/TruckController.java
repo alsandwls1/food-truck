@@ -65,7 +65,7 @@ public class TruckController {
 	
 	//트럭 정보수정
 	@PostMapping("/trucks/post2")
-	public ResponseEntity<String> handleFileUpload2(
+	public Truck handleFileUpload2(
 			@RequestParam("tid") String tid, 
 			@RequestParam("name") String name,
 			@RequestParam("open") String open, 
@@ -89,12 +89,12 @@ public class TruckController {
 
 		// truckRepository.insert(name, open, close, lat, lng, file);
 		truckRepository.update(tid, name, open, close, lat, lng, comment, address, file, email);
-		return null;
+		return truckRepository.findOneById(Integer.parseInt(tid));
 	}
 	   
 	//이미지 포함
    @PostMapping("/trucks/post3")
-   public ResponseEntity<String> handleFileUpload3(
+   public Truck handleFileUpload3(
          @RequestParam("tid") String tid,
          @RequestParam("name") String name,
          @RequestParam("open") String open,
@@ -124,7 +124,7 @@ public class TruckController {
          System.out.println("-----------catch------");
          e.printStackTrace();
       }
-      return null;
+      return truckRepository.findOneById(Integer.parseInt(tid));
    }
 	
 	@DeleteMapping("/trucks/{tId}")
