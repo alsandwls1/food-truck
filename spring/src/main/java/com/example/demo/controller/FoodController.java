@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,8 +51,8 @@ public class FoodController {
 		return null;
 	}
 	
-	//update
-	@PostMapping("/update/{fId}")
+	//update -image있음
+	@PostMapping("/update")
 	public Object modify(
 			@RequestParam("fid") int id, 
 			@RequestParam("name") String name,
@@ -64,8 +65,25 @@ public class FoodController {
 			e.printStackTrace();
 		}
 		//리뷰를 수정하면 리뷰 리스트를 보여줘야하는데 이렇게 하남?				
-		return "수정성공";
+		return "수정되었습니다.";
 	}
+	
+	//update - image없음
+	@PostMapping("/update2")
+	public Object modifyExcludeImg(@RequestBody Food food) {
+		foodRepository.updateExcludeImg(food.getFId(), food.getFName(), food.getFPrice(), food.getFDescription());
+		return "수정되었습니다.";
+	}
+//	@PostMapping("/update2")
+//	public Object modifyExcludeImg(
+//			@RequestParam("fid") int id, 
+//			@RequestParam("name") String name,
+//			@RequestParam("price") String price, 
+//			@RequestParam("description") String description) {
+//		
+//		foodRepository.updateExcludeImg(id, name, price, description);
+//		return "수정되었습니다.";
+//	}
 	
 	//delete
 	@DeleteMapping("/delete/{fId}")

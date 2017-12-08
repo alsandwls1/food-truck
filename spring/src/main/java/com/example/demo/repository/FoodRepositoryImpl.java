@@ -48,6 +48,12 @@ public class FoodRepositoryImpl implements FoodRepository{
 	}
 
 	@Override
+	public int updateExcludeImg(int id, String name, String price, String description) {
+		String sql = "update food set f_name=?, f_price=?, f_description=? where f_id=?";
+		return jdbcTemplate.update(sql, name, price, description, id);
+	}
+
+	@Override
 	public int delete(int fId) {
 		String sql = "delete from food where f_id = ?";
 		return jdbcTemplate.update(sql, fId);

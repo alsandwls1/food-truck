@@ -12,6 +12,8 @@ public interface FoodRepository {
 	public int insert(String name, String price, String description, String unique, MultipartFile file, int truck);
 
 	public int update(int id, String name, String price, String description, String unique, MultipartFile file);
+	
+	public int updateExcludeImg(int id, String name, String price, String description);
 
 	public int delete(int fId);
 
